@@ -1,6 +1,4 @@
-﻿using Application.Services;
-using Core.Extensions;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
 using JwtTokenServer.Proxies;
 using Microsoft.AspNetCore.Builder;
@@ -35,13 +33,13 @@ namespace ApiServer
             services.AddDbContext<Persistence.AppContext>(options => options.UseSqlite("Data Source=SampleDb.db"));
 
             services.JWTAddAuthentication(Configuration);
+            //Config OAuthService
+            //services.AddAccountManager<AccountManager>();
 
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
 
             //Config DI
-            services.AddServices();
-
-            services.AddAccountManager<AccountManager>();
+            //services.AddServices();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
                 .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
