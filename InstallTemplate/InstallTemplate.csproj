@@ -48,10 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Dotnet Core Api Template.zip" />
-    <Content Include="ProjectTemplates\Dotnet Core Api Template.zip">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
+    <None Include="ProjectTemplates\Dotnet Core Api Template.zip">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
