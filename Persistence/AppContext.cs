@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Common.Factories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
@@ -10,22 +13,17 @@ namespace Persistence
         private string UserId;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AppContext(DbContextOptions<AppContext> options) : base(options)
-        {
-            UserId = Common.Factories.ResolverFactory.UserId;
-        }
+        public AppContext(DbContextOptions<AppContext> options) : base(options) { }
 
-        public CatalogDbContext(DbContextOptions<AppContext> options, IHttpContextAccessor httpContextAccessor)
+        public AppContext(DbContextOptions<AppContext> options, IHttpContextAccessor httpContextAccessor)
          : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public 
-
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            this.BeforeCommit(UserId);
+            this.BeforeCommit(_httpContextAccessor?.HttpContext?.User?.GetPropValue<string>(ClaimTypes.NameIdentifier));
 
             return base.SaveChangesAsync(cancellationToken);
         }

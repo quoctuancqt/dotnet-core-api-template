@@ -8,13 +8,9 @@ namespace Common.Factories
     {
         private static IServiceProvider _serviceProvider { set; get; }
 
-        private static IHttpContextAccessor _context { get; set; }
-
         public static void SetProvider(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
-
-            _context = GetService<IHttpContextAccessor>();
         }
 
         public static T GetService<T>()
@@ -49,12 +45,5 @@ namespace Common.Factories
         {
             return (T)src.GetType().GetProperty(propName).GetValue(src, null);
         }
-
-        public static ClaimsPrincipal GetCurrentUser()
-        {
-            return _context.HttpContext.User ?? null;
-        }
-
-        public static string UserId => GetCurrentUser()?.GetPropValue<string>(ClaimTypes.NameIdentifier);
     }
 }
