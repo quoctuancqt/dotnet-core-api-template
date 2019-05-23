@@ -1,0 +1,60 @@
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Security.Claims;
+
+namespace Common.Factories
+{
+    public static class ResolverFactory
+    {
+        private static IServiceProvider _serviceProvider { set; get; }
+
+        private static IHttpContextAccessor _context { get; set; }
+
+        public static void SetProvider(IServiceProvider serviceProvider)
+        {
+            _serviceProvider = serviceProvider;
+
+            _context = GetService<IHttpContextAccessor>();
+        }
+
+        public static T GetService<T>()
+           where T : class
+        {
+            return (T)_serviceProvider.GetService(typeof(T));
+        }
+
+        public static T CreateInstance<T>(string typeName)
+            where T : class
+        {
+
+            Type type = Type.GetType(typeName);
+
+            T instance = (T)Activator.CreateInstance(type);
+
+            return instance;
+        }
+
+        public static T CreateInstance<T>(string typeName, params object[] args)
+            where T : class
+        {
+
+            Type type = Type.GetType(typeName);
+
+            T instance = (T)Activator.CreateInstance(type, args);
+
+            return instance;
+        }
+
+        public static T GetPropValue<T>(this object src, string propName)
+        {
+            return (T)src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+
+        public static ClaimsPrincipal GetCurrentUser()
+        {
+            return _context.HttpContext.User ?? null;
+        }
+
+        public static string UserId => GetCurrentUser()?.GetPropValue<string>(ClaimTypes.NameIdentifier);
+    }
+}

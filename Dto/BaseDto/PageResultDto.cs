@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Dto
+﻿namespace DTO
 {
+    using System.Collections.Generic;
+
     public class PageResultDto<TDto>
     {
         public PageResultDto(int totalRecord, IEnumerable<TDto> items)

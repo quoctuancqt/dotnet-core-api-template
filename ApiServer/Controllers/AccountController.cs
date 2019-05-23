@@ -23,7 +23,7 @@ namespace ApiServer.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromBody] IDictionary<string,string> dic)
         {
-            var response = await _oAuthClient.EnsureApiTokenAsync(dic["UserName"], dic["Password"]);
+            var response = await _oAuthClient.EnsureApiTokenAsync(dic["username"], dic["password"]);
 
             if (response.Success) return Ok(response.Result);
 

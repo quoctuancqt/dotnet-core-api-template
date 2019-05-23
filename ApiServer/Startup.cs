@@ -1,4 +1,7 @@
-﻿using JwtTokenServer.Extensions;
+﻿using Application.Services;
+using Core.Extensions;
+using FluentValidation.AspNetCore;
+using JwtTokenServer.Extensions;
 using JwtTokenServer.Proxies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,8 +19,6 @@ namespace ApiServer
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
-            Mapper.AutoMapperConfiguration.Config();
         }
 
         public IConfiguration Configuration { get; }
@@ -31,19 +32,19 @@ namespace ApiServer
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDbContext<Core.Context>(options => options.UseSqlite("Data Source=SampleDb.db"));
+            services.AddDbContext<Persistence.AppContext>(options => options.UseSqlite("Data Source=SampleDb.db"));
 
             services.JWTAddAuthentication(Configuration);
 
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
 
             //Config DI
-            //services.AddServices();
+            services.AddServices();
 
-            //Config FluentValidation
-            //services.AddValidators();
+            services.AddAccountManager<AccountManager>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+                .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -56,8 +57,8 @@ namespace ApiServer
             //Config Swashbuckle
             //app.UseSwashbuckle();
 
-            //Config Log
-            //app.AddLog(Configuration, env);
+            //Config handle global error
+            //app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.JWTBearerToken(Configuration);
 
