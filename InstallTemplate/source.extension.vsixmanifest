@@ -13,7 +13,7 @@
         <Dependency d:Source="Installed" Id="Microsoft.NetCore.CSharp.ProjectTemplates" DisplayName="C# .NETCore Project Templates" Version="[3.0.0.6380601,4.0)" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\Dotnet Core Api Template.zip" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\ASPNET Core API Template.zip" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.1.28811.260,17.0)" DisplayName="Visual Studio core editor" />

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class AppContext : DbContext
+    public class AppContext : DbContext, IUnitOfWork
     {
         private string UserId;
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -30,17 +30,31 @@ namespace Persistence
 
         public async Task SaveChangeAsync(Func<Task> action)
         {
-            var strategy = this.Database.CreateExecutionStrategy();
+            var strategy = Database.CreateExecutionStrategy();
 
             await strategy.ExecuteAsync(async () =>
             {
-                using (var transaction = this.Database.BeginTransaction())
+                using (var transaction = Database.BeginTransaction())
                 {
-                    await this.SaveChangesAsync();
+                    try
+                    {
+                        await action();
 
-                    await action();
+                        await SaveChangesAsync();
 
-                    transaction.Commit();
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction?.Rollback();
+
+                        if (transaction != null)
+                        {
+                            transaction.Dispose();
+                        }
+
+                        throw;
+                    }
                 }
             });
         }
