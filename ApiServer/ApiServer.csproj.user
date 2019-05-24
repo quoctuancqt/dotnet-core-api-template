@@ -5,5 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>ApiServer</ActiveDebugProfile>
+    <AutoRefresh>true</AutoRefresh>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>
