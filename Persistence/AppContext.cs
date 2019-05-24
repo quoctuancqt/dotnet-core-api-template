@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Common.Factories;
 using Persistence.Extensions;
 
 namespace Persistence
 {
-    public class AppContext : DbContext, IUnitOfWork
+    public class AppContext : DbContext
     {
-        private string UserId;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
         public AppContext(DbContextOptions<AppContext> options) : base(options) { }
-
-        public AppContext(DbContextOptions<AppContext> options, IHttpContextAccessor httpContextAccessor)
-         : base(options)
-        {
-            _httpContextAccessor = httpContextAccessor;
-        }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

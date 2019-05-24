@@ -11,15 +11,7 @@ namespace Core.Repository
         where T : BaseEntity
         where TContext : AppContext
     {
-        private readonly TContext _dbContext;
-
-        protected Persistence.IUnitOfWork UnitOfWork
-        {
-            get
-            {
-                return _dbContext;
-            }
-        }
+        protected readonly TContext _dbContext;
 
         public Repository(TContext dbContext)
         {
