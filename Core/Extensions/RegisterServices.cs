@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Common.Factories;
 using FluentValidation;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using System.Reflection;
@@ -11,7 +11,7 @@ namespace Core.Extensions
     {
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            Common.Factories.ResolverFactory.SetProvider(services.BuildServiceProvider());
+            ResolverFactory.SetProvider(services.BuildServiceProvider());
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

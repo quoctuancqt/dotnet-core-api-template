@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Core.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace Core.Logging
 {
-    public class LoggerAdapter<T> : Interfaces.IAppLogger<T>
+    public class LoggerAdapter<T> : IAppLogger<T>
     {
         private readonly ILogger<T> _logger;
         public LoggerAdapter(ILoggerFactory loggerFactory)

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Net;
@@ -10,7 +11,7 @@ namespace Core.Middlewares
     {
         private readonly RequestDelegate next;
 
-        private readonly Interfaces.IAppLogger<ErrorHandlingMiddleware> _logger;
+        private readonly IAppLogger<ErrorHandlingMiddleware> _logger;
 
         public ErrorHandlingMiddleware(RequestDelegate next, Interfaces.IAppLogger<ErrorHandlingMiddleware> logger)
         {

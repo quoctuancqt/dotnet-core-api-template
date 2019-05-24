@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Persistence
+namespace Persistence.Extensions
 {
     public static class DbContextExtension
     {
@@ -14,7 +15,7 @@ namespace Persistence
                 .Select(e => e.Entity);
 
             var entriesModified = context.ChangeTracker.Entries()
-                  .Where(e => e.State == EntityState.Modified).Select(e => e.Entity as Domain.Interfaces.IAudit);
+                  .Where(e => e.State == EntityState.Modified).Select(e => e.Entity as IAudit);
 
             if (entriesAdded.Count() > 0) ProcessAudit(entriesAdded, EntityState.Added, userId);
 
@@ -23,7 +24,7 @@ namespace Persistence
 
         private static void ProcessAudit(IEnumerable<object> entries, EntityState state, string userId)
         {
-            foreach (var e in entries.Select(e => e as Domain.Interfaces.IAudit))
+            foreach (var e in entries.Select(e => e as IAudit))
             {
                 if (e != null)
                 {

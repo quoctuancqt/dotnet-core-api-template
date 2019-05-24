@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Core.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public interface IAsyncRepository<T> where T : Entities.BaseEntity
+    public interface IAsyncRepository<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> ListAllAsync();

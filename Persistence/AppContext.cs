@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using Common.Factories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Common.Factories;
+using Persistence.Extensions;
 
 namespace Persistence
 {
@@ -23,7 +23,7 @@ namespace Persistence
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            this.BeforeCommit(_httpContextAccessor?.HttpContext?.User?.GetPropValue<string>(ClaimTypes.NameIdentifier));
+            this.BeforeCommit(ResolverFactory.GetCurrentUserId());
 
             return base.SaveChangesAsync(cancellationToken);
         }

@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Entities;
+using Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace Core.Repository
 {
-    public class SpecificationEvaluator<T> where T : Entities.BaseEntity
+    public class SpecificationEvaluator<T> where T : BaseEntity
     {
-        public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, Interfaces.ISpecification<T> specification)
+        public static IQueryable<T> GetQuery(IQueryable<T> inputQuery, ISpecification<T> specification)
         {
             var query = inputQuery;
 

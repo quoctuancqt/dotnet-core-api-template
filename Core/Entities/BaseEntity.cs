@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Domain.Interfaces;
+using System;
 
 namespace Core.Entities
 {
-    public class BaseEntity : Domain.Interfaces.IAudit, Domain.Interfaces.IEntity
+    public class BaseEntity : IAudit, IEntity
     {
         public string Id { get; set; }
         public string CreatedBy { get; set; }
