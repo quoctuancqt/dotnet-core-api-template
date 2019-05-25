@@ -12,6 +12,6 @@
     "language": "C#", 
     "type": "project"
   },
-  "sourceName": "Demo", 
+  "sourceName": "CoreApiTemplate", 
   "preferNameDirectory": true
 }
