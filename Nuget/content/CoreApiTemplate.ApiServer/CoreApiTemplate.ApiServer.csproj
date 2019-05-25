@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\CoreApiTemplate.Application\CoreApiTemplate.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,19 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{A2C4E22E-A837-4AA7-B35F-236BDC15AF04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.Core", "CoreApiTemplate.Core\CoreApiTemplate.Core.csproj", "{A2C4E22E-A837-4AA7-B35F-236BDC15AF04}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiServer", "ApiServer\ApiServer.csproj", "{7DFA999C-6A0E-446B-82D7-CF6D413C427F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.ApiServer", "CoreApiTemplate.ApiServer\CoreApiTemplate.ApiServer.csproj", "{7DFA999C-6A0E-446B-82D7-CF6D413C427F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{73973940-33E2-45B8-B9C9-81507FD7F921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.Common", "CoreApiTemplate.Common\CoreApiTemplate.Common.csproj", "{73973940-33E2-45B8-B9C9-81507FD7F921}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{03A02FB5-B807-4991-891C-1A78291BF160}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.Persistence", "CoreApiTemplate.Persistence\CoreApiTemplate.Persistence.csproj", "{03A02FB5-B807-4991-891C-1A78291BF160}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{7E1D9FAF-11AB-4F6C-8346-D2A73A51F3F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.Application", "CoreApiTemplate.Application\CoreApiTemplate.Application.csproj", "{7E1D9FAF-11AB-4F6C-8346-D2A73A51F3F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{9418000A-3CE7-43FB-8ED6-3F36CCA59DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreApiTemplate.Domain", "CoreApiTemplate.Domain\CoreApiTemplate.Domain.csproj", "{9418000A-3CE7-43FB-8ED6-3F36CCA59DD0}"
 EndProject
-
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,10 +45,6 @@ Global
 		{9418000A-3CE7-43FB-8ED6-3F36CCA59DD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9418000A-3CE7-43FB-8ED6-3F36CCA59DD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9418000A-3CE7-43FB-8ED6-3F36CCA59DD0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7B60B4A-200F-403E-B04B-C2A76BF9C8EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7B60B4A-200F-403E-B04B-C2A76BF9C8EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7B60B4A-200F-403E-B04B-C2A76BF9C8EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7B60B4A-200F-403E-B04B-C2A76BF9C8EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
