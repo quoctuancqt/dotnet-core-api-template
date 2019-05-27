@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj" />
-    <ProjectReference Include="..\Dto\Dto.csproj" />
-    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\CoreApiTemplate.Common\CoreApiTemplate.Common.csproj" />
+    <ProjectReference Include="..\CoreApiTemplate.Dto\CoreApiTemplate.Dto.csproj" />
+    <ProjectReference Include="..\CoreApiTemplate.Persistence\CoreApiTemplate.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
