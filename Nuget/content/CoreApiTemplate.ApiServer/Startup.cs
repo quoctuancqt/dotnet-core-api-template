@@ -1,13 +1,19 @@
-﻿using FluentValidation.AspNetCore;
+﻿using Application.Services;
+using Core.Extensions;
+using Core.Middlewares;
+using Domain.Identities;
+using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
 using JwtTokenServer.Proxies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence;
 using System;
 
 namespace ApiServer
@@ -23,44 +29,59 @@ namespace ApiServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             //Config Swashbuckle
-            //services.AddSwashbuckle();
+            services.AddSwashbuckle();
 
             services.AddSingleton(Configuration);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDbContext<Persistence.AppContext>(options => options.UseSqlite("Data Source=SampleDb.db"));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=Demo.db"));
 
-            services.JWTAddAuthentication(Configuration);
-            //Config OAuthService
-            //services.AddAccountManager<AccountManager>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+               .AddEntityFrameworkStores<ApplicationContext>()
+            .AddDefaultTokenProviders();
+
+            //Config OAuth Server
+            services.JWTAddAuthentication();
 
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
 
-            //Config DI
-            //services.AddServices();
+            services.AddAccountManager<AccountManager>();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-                .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            //Config DI
+            services.AddServices();
+
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                    .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors();
+
+            //Seed data
+            DbSeed.SeedAsync(app).GetAwaiter().GetResult();
+
             //Config Swashbuckle
-            //app.UseSwashbuckle();
+            app.UseSwashbuckle();
 
             //Config handle global error
-            //app.UseMiddleware<ErrorHandlingMiddleware>();
-
-            app.JWTBearerToken(Configuration);
+            app.UseMiddleware<ErrorHandlingMiddleware>();
 
             app.UseAuthentication();
+
+            app.JWTBearerToken(Configuration);
 
             app.UseMvc();
         }

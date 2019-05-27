@@ -1,5 +1,7 @@
-﻿using JwtTokenServer.Models;
+﻿using Domain.Identities;
+using JwtTokenServer.Models;
 using JwtTokenServer.Services;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -7,18 +9,26 @@ namespace Application.Services
 {
     public class AccountManager : IAccountManager
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IPasswordHasher<ApplicationUser> _passwordHasher;
+
+        public AccountManager(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher)
+        {
+            _userManager = userManager;
+            _passwordHasher = passwordHasher;
+        }
+
         public async Task<AccountResult> VerifyAccountAsync(string username, string password, TokenRequest tokenRequest)
         {
-            await Task.CompletedTask;
+            var user = await _userManager.FindByEmailAsync(username);
 
-            //Logic to check user is valid or not
-            var user = new { Id = 1, FirstName = "Admin" };
+            if (user == null) return new AccountResult(new { error = "User is not correct." });
 
-            if (user == null) return new AccountResult(new { error = "Invalid user" });
+            if (_passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Failed) return new AccountResult(new { error = "Password is not correct." }); ;
 
             tokenRequest.Claims.Add(new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()));
 
-            tokenRequest.Claims.Add(new Claim(ClaimTypes.Name, user.FirstName));
+            tokenRequest.Claims.Add(new Claim(ClaimTypes.Name, user.UserName));
 
             tokenRequest.Responses.Add("userId", user.Id.ToString());
 

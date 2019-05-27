@@ -2,11 +2,11 @@
 
 namespace Persistence
 {
-    public class AppContextFactory : ContextFactory.DesignTimeDbContextFactoryBase<AppContext>
+    public class AppContextFactory : ContextFactory.DesignTimeDbContextFactoryBase<ApplicationContext>
     {
-        protected override AppContext CreateNewInstance(DbContextOptions<AppContext> options)
+        protected override ApplicationContext CreateNewInstance(DbContextOptions<ApplicationContext> options)
         {
-            return new AppContext(options);
+            return new ApplicationContext(options);
         }
     }
 }

@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
     <PackageReference Include="FluentValidation" Version="8.4.0" />
-    <PackageReference Include="JwtTokenServer" Version="1.0.5" />
+    <PackageReference Include="JwtTokenServer" Version="1.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CoreApiTemplate.Common\CoreApiTemplate.Common.csproj" />
+    <ProjectReference Include="..\CoreApiTemplate.Dto\CoreApiTemplate.Dto.csproj" />
     <ProjectReference Include="..\CoreApiTemplate.Persistence\CoreApiTemplate.Persistence.csproj" />
   </ItemGroup>
 
