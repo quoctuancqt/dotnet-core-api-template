@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ApiServer.Controllers
 {
-    [Authorize("ApiPolicy")]
     public class AccountController : ApiBase
     {
         private readonly OAuthClient _oAuthClient;
@@ -28,10 +27,10 @@ namespace ApiServer.Controllers
             return BadRequest(response.Result);
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{name}")]
+        public IActionResult Get(string name)
         {
-            return Ok("Call from account controller!");
+            return Ok($"Hello {name}");
         }
     }
 }

@@ -69,9 +69,12 @@ namespace Persistence
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
 
-                await userManager.CreateAsync(admin, "P@ssword");
+                var result = await userManager.CreateAsync(admin, "P@ssw0rd");
 
-                await userManager.AddToRoleAsync(admin, "ADMIN");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(admin, "ADMIN");
+                }
 
                 var normalUser = new ApplicationUser
                 {
@@ -82,9 +85,12 @@ namespace Persistence
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
 
-                await userManager.CreateAsync(normalUser, "Password");
+                result = await userManager.CreateAsync(normalUser, "P@ssw0rd");
 
-                await userManager.AddToRoleAsync(normalUser, "USER");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(normalUser, "USER");
+                }
             }
         }
     }

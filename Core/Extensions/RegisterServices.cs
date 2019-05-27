@@ -16,7 +16,7 @@ namespace Core.Extensions
         {
             ResolverFactory.SetProvider(services.BuildServiceProvider());
 
-            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

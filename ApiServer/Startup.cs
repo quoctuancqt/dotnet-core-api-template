@@ -1,7 +1,6 @@
 ﻿using Application.Services;
 using Core.Extensions;
 using Core.Middlewares;
-using Core.Policies;
 using Domain.Identities;
 using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
@@ -30,6 +29,8 @@ namespace ApiServer
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             //Config Swashbuckle
             services.AddSwashbuckle();
 
@@ -43,25 +44,21 @@ namespace ApiServer
                .AddEntityFrameworkStores<ApplicationContext>()
             .AddDefaultTokenProviders();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ApiPolicy", policy =>
-                {
-                    policy.AddRequirements(new ApiAuthorize());
-                });
-            });
-
-            services.JWTAddAuthentication(Configuration);
-            //Config OAuthService
-            services.AddAccountManager<AccountManager>();
+            //Config OAuth Server
+            services.JWTAddAuthentication();
 
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
+
+            services.AddAccountManager<AccountManager>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Config DI
             services.AddServices();
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest)
-                .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                    .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context)
@@ -70,6 +67,8 @@ namespace ApiServer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             //Seed data
             DbSeed.SeedAsync(app).GetAwaiter().GetResult();
