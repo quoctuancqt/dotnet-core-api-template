@@ -6,7 +6,6 @@ using Common.Factories;
 using Persistence.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Domain.Identities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence
 {
@@ -16,19 +15,9 @@ namespace Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<ApplicationUser>(ConfigurateApplicationUser);
+            builder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
 
             base.OnModelCreating(builder);
-        }
-
-        private void ConfigurateApplicationUser(EntityTypeBuilder<ApplicationUser> buidler)
-        {
-            buidler.Property(au => au.PasswordHash)
-                .HasMaxLength(8)
-                .IsRequired();
-
-            buidler.Property(au => au.UserName)
-                .IsRequired();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
