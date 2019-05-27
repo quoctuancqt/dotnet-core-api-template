@@ -20,7 +20,7 @@ namespace ApiServer.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromBody] LoginDto dto)
         {
-            var response = await _oAuthClient.EnsureApiTokenAsync(dto.UserName, dto.Password);
+            var response = await _oAuthClient.EnsureApiTokenAsync(dto.Username, dto.Password);
 
             if (response.Success) return Ok(response.Result);
 
