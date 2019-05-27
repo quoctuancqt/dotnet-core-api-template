@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Domain;
 using System.Collections.Generic;
 
 namespace Core.Repository

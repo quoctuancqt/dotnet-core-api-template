@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public abstract class Repository<T, TContext> : IAsyncRepository<T>
+    public abstract class Repository<T, TContext> : IAsyncRepository<T>, IRepository<T>
         where T : BaseEntity
         where TContext : ApplicationContext
     {

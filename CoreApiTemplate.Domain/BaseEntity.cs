@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces;
 using System;
 
-namespace Core.Entities
+namespace Domain
 {
     public class BaseEntity : IAudit, IEntity
     {

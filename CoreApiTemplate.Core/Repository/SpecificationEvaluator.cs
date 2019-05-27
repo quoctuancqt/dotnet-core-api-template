@@ -1,5 +1,5 @@
-﻿using Core.Entities;
-using Core.Interfaces;
+﻿using Core.Interfaces;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
