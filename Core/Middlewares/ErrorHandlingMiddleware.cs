@@ -13,7 +13,7 @@ namespace Core.Middlewares
 
         private readonly IAppLogger<ErrorHandlingMiddleware> _logger;
 
-        public ErrorHandlingMiddleware(RequestDelegate next, Interfaces.IAppLogger<ErrorHandlingMiddleware> logger)
+        public ErrorHandlingMiddleware(RequestDelegate next, IAppLogger<ErrorHandlingMiddleware> logger)
         {
             _logger = logger;
 

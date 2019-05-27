@@ -9,7 +9,7 @@ namespace Core.Repository
 {
     public abstract class Repository<T, TContext> : IAsyncRepository<T>
         where T : BaseEntity
-        where TContext : AppContext
+        where TContext : ApplicationContext
     {
         protected readonly TContext _dbContext;
 

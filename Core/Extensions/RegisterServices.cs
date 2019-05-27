@@ -1,5 +1,8 @@
 ﻿using AutoMapper;
 using Common.Factories;
+using Core.Interfaces;
+using Core.Logging;
+using Dto;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
@@ -12,6 +15,8 @@ namespace Core.Extensions
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             ResolverFactory.SetProvider(services.BuildServiceProvider());
+
+            services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
@@ -27,7 +32,7 @@ namespace Core.Extensions
 
         public static IServiceCollection RegisterValidators(this IServiceCollection services)
         {
-            //services.AddSingleton<IValidator<TDTO>, TDTOValidator>();
+            services.AddSingleton<IValidator<LoginDto>, LoginDtoValidator>();
 
             return services;
         }
