@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
     <metadata>
-        <id>ASPNet.Core.API</id>
-        <version>1.0.0</version>
+        <id>ASPNet.Core.API.Template</id>
+        <version>1.0.1</version>
         <description>This is a boileplate project template for ASP.Net Core API.</description>
         <authors>Tuan Cao</authors>
         <projectUrl>https://gitlab.com/tuantonycao/dotnet-core-api-template</projectUrl>
