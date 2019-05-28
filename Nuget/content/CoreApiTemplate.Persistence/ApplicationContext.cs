@@ -48,12 +48,12 @@ namespace Persistence
                 {
                     try
                     {
+                        await SaveChangesAsync();
+
                         if (action != null)
                         {
                             await action.Invoke();
                         }
-
-                        await SaveChangesAsync();
 
                         transaction.Commit();
                     }
