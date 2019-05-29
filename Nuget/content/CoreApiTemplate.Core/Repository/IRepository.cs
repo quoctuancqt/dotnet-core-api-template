@@ -1,8 +1,8 @@
-﻿using Core.Interfaces;
-using Domain;
+﻿using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Domain;
 using System.Collections.Generic;
 
-namespace Core.Repository
+namespace CoreApiTemplate.Core.Repository
 {
     public interface IRepository<T> where T : BaseEntity
     {
@@ -12,6 +12,6 @@ namespace Core.Repository
         T Add(T entity);
         void Update(T entity);
         void Delete(T entity);
-        int Count(Interfaces.ISpecification<T> spec);
+        int Count(ISpecification<T> spec);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain.Interfaces
+namespace CoreApiTemplate.Domain.Interfaces
 {
     public interface IEntity<T>
     {

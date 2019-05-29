@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Core.Interfaces
+namespace CoreApiTemplate.Core.Interfaces
 {
     public interface ISpecification<T>
     {

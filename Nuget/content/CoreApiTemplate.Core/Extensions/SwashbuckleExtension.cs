@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 
-namespace Core.Extensions
+namespace CoreApiTemplate.Core.Extensions
 {
     public static class SwashbuckleExtension
     {

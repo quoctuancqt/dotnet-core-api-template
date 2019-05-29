@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ApiServer": {
+    "CoreApiTemplate.ApiServer": {
       "commandName": "Project",
       "launchUrl": "api/values",
       "environmentVariables": {

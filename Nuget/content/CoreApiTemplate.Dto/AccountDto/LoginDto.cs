@@ -1,4 +1,4 @@
-﻿namespace Dto
+﻿namespace CoreApiTemplate.Dto
 {
     public class LoginDto
     {

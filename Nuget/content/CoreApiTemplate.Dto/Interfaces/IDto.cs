@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dto.Interfaces
+namespace CoreApiTemplate.Dto.Interfaces
 {
     public interface IDto<T>
     {

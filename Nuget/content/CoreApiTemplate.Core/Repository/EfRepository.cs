@@ -1,12 +1,12 @@
-﻿using Core.Interfaces;
-using Domain;
+﻿using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Domain;
 using Microsoft.EntityFrameworkCore;
-using Persistence;
+using CoreApiTemplate.Persistence;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Core.Repository
+namespace CoreApiTemplate.Core.Repository
 {
     public abstract class Repository<T, TContext> : IAsyncRepository<T>, IRepository<T>
         where T : BaseEntity

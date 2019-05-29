@@ -2,7 +2,7 @@
 using System.Security.Claims;
 using System.Security.Principal;
 
-namespace Core.Extensions
+namespace CoreApiTemplate.Core.Extensions
 {
     public static class ClaimExtension
     {

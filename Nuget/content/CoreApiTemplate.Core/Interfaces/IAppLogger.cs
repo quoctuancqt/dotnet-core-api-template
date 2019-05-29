@@ -1,4 +1,4 @@
-﻿namespace Core.Interfaces
+﻿namespace CoreApiTemplate.Core.Interfaces
 {
     public interface IAppLogger<T>
     {

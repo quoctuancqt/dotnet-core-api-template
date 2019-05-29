@@ -1,7 +1,7 @@
-﻿using Domain.Interfaces;
+﻿using CoreApiTemplate.Domain.Interfaces;
 using System;
 
-namespace Domain
+namespace CoreApiTemplate.Domain
 {
     public class BaseEntity : IAudit, IEntity
     {

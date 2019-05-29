@@ -9,7 +9,7 @@ using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Common.Helpers
+namespace CoreApiTemplate.Common.Helpers
 {
     public static class UnitHelper
     {

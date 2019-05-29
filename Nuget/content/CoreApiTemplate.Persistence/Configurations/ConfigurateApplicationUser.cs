@@ -1,4 +1,4 @@
-﻿using Domain.Identities;
+﻿using CoreApiTemplate.Domain.Identities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

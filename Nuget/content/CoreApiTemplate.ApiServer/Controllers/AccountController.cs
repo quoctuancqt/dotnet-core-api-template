@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
-using Dto;
+using CoreApiTemplate.Dto;
 using JwtTokenServer.Proxies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ApiServer.Controllers
+namespace CoreApiTemplate.ApiServer.Controllers
 {
     public class AccountController : ApiBase
     {

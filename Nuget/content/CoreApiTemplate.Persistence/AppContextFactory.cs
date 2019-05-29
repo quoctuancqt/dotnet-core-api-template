@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using CoreApiTemplate.Persistence.ContextFactory;
 
-namespace Persistence
+namespace CoreApiTemplate.Persistence
 {
-    public class AppContextFactory : ContextFactory.DesignTimeDbContextFactoryBase<ApplicationContext>
+    public class AppContextFactory : DesignTimeDbContextFactoryBase<ApplicationContext>
     {
         protected override ApplicationContext CreateNewInstance(DbContextOptions<ApplicationContext> options)
         {

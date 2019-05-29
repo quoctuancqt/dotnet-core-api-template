@@ -1,7 +1,8 @@
-﻿using Application.Services;
-using Core.Extensions;
-using Core.Middlewares;
-using Domain.Identities;
+﻿using CoreApiTemplate.Application.Services;
+using CoreApiTemplate.Core.Extensions;
+using CoreApiTemplate.Core.Middlewares;
+using CoreApiTemplate.Domain.Identities;
+using CoreApiTemplate.Persistence;
 using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
 using JwtTokenServer.Proxies;
@@ -13,10 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence;
 using System;
 
-namespace ApiServer
+namespace CoreApiTemplate.ApiServer
 {
     public class Startup
     {
@@ -38,7 +38,8 @@ namespace ApiServer
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=Demo.db"));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                .AddEntityFrameworkStores<ApplicationContext>()
