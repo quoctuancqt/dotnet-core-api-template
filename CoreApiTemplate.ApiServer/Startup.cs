@@ -38,7 +38,8 @@ namespace ApiServer
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlite("Data Source=Demo.db"));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                .AddEntityFrameworkStores<ApplicationContext>()
