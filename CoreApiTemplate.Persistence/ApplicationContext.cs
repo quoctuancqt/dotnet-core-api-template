@@ -9,7 +9,7 @@ using CoreApiTemplate.Domain.Identities;
 
 namespace CoreApiTemplate.Persistence
 {
-    public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
+    public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>, IUnitOfWork
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
@@ -18,6 +18,13 @@ namespace CoreApiTemplate.Persistence
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
 
             base.OnModelCreating(builder);
+        }
+
+        public override int SaveChanges()
+        {
+            this.BeforeCommit(ResolverFactory.GetCurrentUserId());
+
+            return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

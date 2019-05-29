@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace CoreApiTemplate.Core.UnitOfWork
+namespace CoreApiTemplate.Core.Resilience
 {
     public class ResilientTransaction
     {

@@ -55,7 +55,7 @@ namespace CoreApiTemplate.ApiServer
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Config DI
-            services.AddServices();
+            services.AddServices(Configuration);
 
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)

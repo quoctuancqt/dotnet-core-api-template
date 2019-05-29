@@ -12,6 +12,8 @@ namespace CoreApiTemplate.Core.Repository
     {
         protected readonly TContext _dbContext;
 
+        public IUnitOfWork UnitOfWork => _dbContext;
+
         public EfRepository(TContext dbContext)
         {
             _dbContext = dbContext;
