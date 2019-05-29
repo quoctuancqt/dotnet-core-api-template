@@ -52,7 +52,7 @@ namespace CoreApiTemplate.Common.Factories
 
         public static string GetCurrentUserId()
         {
-            return _httpContextAccessor?.HttpContext?.User.GetPropValue<string>(ClaimTypes.NameIdentifier);
+            return _httpContextAccessor?.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
     }
 }
