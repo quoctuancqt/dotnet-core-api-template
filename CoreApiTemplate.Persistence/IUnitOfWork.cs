@@ -8,7 +8,6 @@ namespace CoreApiTemplate.Persistence
     {
         int SaveChanges();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-        Task<bool> SaveEntitiesAsync(CancellationToken cancellationToken = default);
         Task SaveChangeAsync(Func<Task> action = null);
     }
 }
