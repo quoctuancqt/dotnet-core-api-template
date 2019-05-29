@@ -2,6 +2,7 @@
 using CoreApiTemplate.Common.Factories;
 using CoreApiTemplate.Core.Interfaces;
 using CoreApiTemplate.Core.Logging;
+using CoreApiTemplate.Core.Repository;
 using CoreApiTemplate.Core.Resilience;
 using CoreApiTemplate.Dto;
 using FluentValidation;
@@ -18,6 +19,8 @@ namespace CoreApiTemplate.Core.Extensions
             ResolverFactory.SetProvider(services.BuildServiceProvider());
 
             services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
