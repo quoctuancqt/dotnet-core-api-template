@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Persistence.ContextFactory;
+using CoreApiTemplate.Persistence.ContextFactory;
 
-namespace Persistence
+namespace CoreApiTemplate.Persistence
 {
     public class AppContextFactory : DesignTimeDbContextFactoryBase<ApplicationContext>
     {

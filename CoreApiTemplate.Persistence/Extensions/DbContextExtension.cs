@@ -1,10 +1,10 @@
-﻿using Domain.Interfaces;
+﻿using CoreApiTemplate.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Persistence.Extensions
+namespace CoreApiTemplate.Persistence.Extensions
 {
     public static class DbContextExtension
     {

@@ -1,8 +1,8 @@
-﻿using Core.Interfaces;
-using Domain;
+﻿using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Domain;
 using System.Collections.Generic;
 
-namespace Core.Repository
+namespace CoreApiTemplate.Core.Repository
 {
     public interface IRepository<T> where T : BaseEntity
     {

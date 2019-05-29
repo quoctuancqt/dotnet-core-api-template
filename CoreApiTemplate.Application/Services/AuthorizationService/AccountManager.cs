@@ -1,11 +1,11 @@
-﻿using Domain.Identities;
+﻿using CoreApiTemplate.Domain.Identities;
 using JwtTokenServer.Models;
 using JwtTokenServer.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace CoreApiTemplate.Application.Services
 {
     public class AccountManager : IAccountManager
     {

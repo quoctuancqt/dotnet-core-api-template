@@ -1,4 +1,4 @@
-﻿namespace Common.Constants
+﻿namespace CoreApiTemplate.Common.Constants
 {
     public enum OrderType
     {

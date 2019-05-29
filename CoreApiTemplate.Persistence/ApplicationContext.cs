@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Common.Factories;
-using Persistence.Extensions;
+using CoreApiTemplate.Common.Factories;
+using CoreApiTemplate.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Domain.Identities;
+using CoreApiTemplate.Domain.Identities;
 
-namespace Persistence
+namespace CoreApiTemplate.Persistence
 {
     public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {

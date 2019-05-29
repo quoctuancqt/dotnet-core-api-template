@@ -1,9 +1,9 @@
-﻿using Core.Interfaces;
-using Domain;
+﻿using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace Core.Repository
+namespace CoreApiTemplate.Core.Repository
 {
     public class SpecificationEvaluator<T> where T : BaseEntity
     {

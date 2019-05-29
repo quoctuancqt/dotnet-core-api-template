@@ -1,9 +1,9 @@
-﻿using Core.Interfaces;
-using Domain;
+﻿using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Core.Repository
+namespace CoreApiTemplate.Core.Repository
 {
     public interface IAsyncRepository<T> where T : BaseEntity
     {

@@ -1,7 +1,7 @@
-﻿using Core.Interfaces;
+﻿using CoreApiTemplate.Core.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace Core.Logging
+namespace CoreApiTemplate.Core.Logging
 {
     public class LoggerAdapter<T> : IAppLogger<T>
     {

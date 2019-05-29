@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Dto
+namespace CoreApiTemplate.Dto
 {
     public class LoginDtoValidator : AbstractValidator<LoginDto>
     {

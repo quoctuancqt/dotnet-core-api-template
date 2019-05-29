@@ -1,12 +1,12 @@
-﻿using Common.Factories;
-using Domain.Identities;
+﻿using CoreApiTemplate.Common.Factories;
+using CoreApiTemplate.Domain.Identities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace Core.Policies
+namespace CoreApiTemplate.Core.Policies
 {
     public abstract class BaseAuthorize<TRequirement> : AuthorizationHandler<TRequirement>, IAuthorizationRequirement
         where TRequirement : IAuthorizationRequirement

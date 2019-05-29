@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Common.Helpers
+namespace CoreApiTemplate.Common.Helpers
 {
     public class AsyncHelper
     {

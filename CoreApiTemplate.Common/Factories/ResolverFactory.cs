@@ -2,7 +2,7 @@
 using System;
 using System.Security.Claims;
 
-namespace Common.Factories
+namespace CoreApiTemplate.Common.Factories
 {
     public static class ResolverFactory
     {

@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using Common.Factories;
-using Core.Interfaces;
-using Core.Logging;
-using Dto;
+using CoreApiTemplate.Common.Factories;
+using CoreApiTemplate.Core.Interfaces;
+using CoreApiTemplate.Core.Logging;
+using CoreApiTemplate.Dto;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
 using System.Reflection;
 
-namespace Core.Extensions
+namespace CoreApiTemplate.Core.Extensions
 {
     public static class RegisterServices
     {

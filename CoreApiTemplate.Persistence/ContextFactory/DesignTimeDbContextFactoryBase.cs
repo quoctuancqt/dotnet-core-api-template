@@ -1,10 +1,10 @@
-﻿using Common.Helpers;
+﻿using CoreApiTemplate.Common.Helpers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Persistence.ContextFactory
+namespace CoreApiTemplate.Persistence.ContextFactory
 {
     public abstract class DesignTimeDbContextFactoryBase<TContext> :
         IDesignTimeDbContextFactory<TContext> where TContext : DbContext

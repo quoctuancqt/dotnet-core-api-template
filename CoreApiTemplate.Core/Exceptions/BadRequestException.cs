@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Exceptions
+namespace CoreApiTemplate.Core.Exceptions
 {
     public class BadRequestException : Exception
     {

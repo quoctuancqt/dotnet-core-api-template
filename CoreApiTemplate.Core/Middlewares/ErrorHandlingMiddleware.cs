@@ -1,11 +1,11 @@
-﻿using Core.Interfaces;
+﻿using CoreApiTemplate.Core.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Core.Middlewares
+namespace CoreApiTemplate.Core.Middlewares
 {
     public class ErrorHandlingMiddleware
     {
