@@ -1,65 +1,22 @@
 ﻿using CoreApiTemplate.Core.Interfaces;
 using CoreApiTemplate.Domain;
-using Microsoft.EntityFrameworkCore;
 using CoreApiTemplate.Persistence;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreApiTemplate.Core.Repository
 {
-    public abstract class Repository<T, TContext> : IAsyncRepository<T>, IRepository<T>
+    public abstract class EfRepository<T, TContext> : IRepository<T>
         where T : BaseEntity
         where TContext : ApplicationContext
     {
         protected readonly TContext _dbContext;
 
-        public Repository(TContext dbContext)
+        public IUnitOfWork UnitOfWork => _dbContext;
+
+        public EfRepository(TContext dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        public virtual async Task<T> GetByIdAsync(int id)
-        {
-            return await _dbContext.Set<T>().FindAsync(id);
-        }
-
-        public virtual async Task<IReadOnlyList<T>> ListAllAsync()
-        {
-            return await _dbContext.Set<T>().ToListAsync();
-        }
-
-        public virtual async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
-        {
-            return await ApplySpecification(spec).ToListAsync();
-        }
-
-        public virtual async Task<int> CountAsync(ISpecification<T> spec)
-        {
-            return await ApplySpecification(spec).CountAsync();
-        }
-
-        public virtual async Task<T> AddAsync(T entity)
-        {
-            _dbContext.Set<T>().Add(entity);
-
-            await _dbContext.SaveChangesAsync();
-
-            return entity;
-        }
-
-        public virtual async Task UpdateAsync(T entity)
-        {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-
-            await _dbContext.SaveChangesAsync();
-        }
-
-        public virtual async Task DeleteAsync(T entity)
-        {
-            _dbContext.Set<T>().Remove(entity);
-
-            await _dbContext.SaveChangesAsync();
         }
 
         public T GetById(int id)
