@@ -7,7 +7,6 @@ using CoreApiTemplate.Dto;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Scrutor;
 using System.Reflection;
 
 namespace CoreApiTemplate.Core.Extensions
@@ -31,13 +30,6 @@ namespace CoreApiTemplate.Core.Extensions
             {
                 services.AddTransient<IHttpClient, StandardHttpClient>();
             }
-
-            services.Scan(scan =>
-                scan.FromCallingAssembly()
-                    .AddClasses()
-                    .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                    .AsMatchingInterface()
-                    .WithScopedLifetime());
 
             return services.RegisterValidators();
         }
