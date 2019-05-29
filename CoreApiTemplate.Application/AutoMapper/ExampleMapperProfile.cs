@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Core.AutoMapper
+namespace CoreApiTemplate.Application.AutoMapper
 {
     public class ExampleMapperProfile : Profile
     {
