@@ -12,6 +12,6 @@ namespace Core.Repository
         T Add(T entity);
         void Update(T entity);
         void Delete(T entity);
-        int Count(Interfaces.ISpecification<T> spec);
+        int Count(ISpecification<T> spec);
     }
 }

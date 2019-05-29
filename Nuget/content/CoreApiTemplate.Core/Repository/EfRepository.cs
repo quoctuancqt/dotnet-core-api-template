@@ -1,4 +1,5 @@
-﻿using Core.Entities;
+﻿using Core.Interfaces;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public abstract class Repository<T, TContext> : IAsyncRepository<T>
+    public abstract class Repository<T, TContext> : IAsyncRepository<T>, IRepository<T>
         where T : BaseEntity
         where TContext : ApplicationContext
     {
@@ -28,12 +29,12 @@ namespace Core.Repository
             return await _dbContext.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<IReadOnlyList<T>> ListAsync(Interfaces.ISpecification<T> spec)
+        public virtual async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).ToListAsync();
         }
 
-        public virtual async Task<int> CountAsync(Interfaces.ISpecification<T> spec)
+        public virtual async Task<int> CountAsync(ISpecification<T> spec)
         {
             return await ApplySpecification(spec).CountAsync();
         }
@@ -71,7 +72,7 @@ namespace Core.Repository
             return _dbContext.Set<T>().ToList();
         }
 
-        public IReadOnlyList<T> List(Interfaces.ISpecification<T> spec)
+        public IReadOnlyList<T> List(ISpecification<T> spec)
         {
             return ApplySpecification(spec).ToList();
         }
@@ -93,12 +94,12 @@ namespace Core.Repository
             _dbContext.Set<T>().Remove(entity);
         }
 
-        public int Count(Interfaces.ISpecification<T> spec)
+        public int Count(ISpecification<T> spec)
         {
             return ApplySpecification(spec).Count();
         }
 
-        private IQueryable<T> ApplySpecification(Interfaces.ISpecification<T> spec)
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
         }
