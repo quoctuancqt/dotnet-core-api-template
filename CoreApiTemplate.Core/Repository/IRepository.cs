@@ -2,6 +2,7 @@
 using CoreApiTemplate.Domain;
 using CoreApiTemplate.Persistence;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CoreApiTemplate.Core.Repository
 {
@@ -9,6 +10,9 @@ namespace CoreApiTemplate.Core.Repository
         where T : BaseEntity
     {
         IUnitOfWork UnitOfWork { get; }
+        Task<T> GetByIdAsync(TKey id);
+        Task<IReadOnlyList<T>> ListAllAsync();
+        Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec);
         T GetById(TKey id);
         IReadOnlyList<T> ListAll();
         IReadOnlyList<T> List(ISpecification<T> spec);
