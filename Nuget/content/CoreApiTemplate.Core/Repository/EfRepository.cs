@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoreApiTemplate.Core.Repository
 {
-    public abstract class EfRepository<T> : IRepository<T>
+    public class EfRepository<T> : IRepository<T>
         where T : BaseEntity
     {
         protected readonly ApplicationContext _dbContext;
