@@ -60,6 +60,8 @@ namespace CoreApiTemplate.ApiServer
 
             services.AddCustomServices();
 
+            services.RegisterValidations();
+
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)
                     .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
