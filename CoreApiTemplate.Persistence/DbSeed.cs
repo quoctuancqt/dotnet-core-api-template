@@ -14,24 +14,17 @@ namespace CoreApiTemplate.Persistence
     {
         public static async Task SeedAsync(IApplicationBuilder applicationBuilder)
         {
-            try
+            using (var scope = applicationBuilder.ApplicationServices.CreateScope())
             {
-                using (var scope = applicationBuilder.ApplicationServices.CreateScope())
-                {
-                    var context = (ApplicationContext)scope.ServiceProvider.GetService(typeof(ApplicationContext));
+                var context = (ApplicationContext)scope.ServiceProvider.GetService(typeof(ApplicationContext));
 
-                    context.Database.EnsureCreated();
+                context.Database.EnsureCreated();
 
-                    context.Database.Migrate();
+                context.Database.Migrate();
 
-                    await SeedRoleAsync(context);
+                await SeedRoleAsync(context);
 
-                    await SeedUserAsync(scope, context);
-                }
-            }
-            catch (Exception ex)
-            {
-
+                await SeedUserAsync(scope, context);
             }
         }
 

@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Demo.Application.Policies;
 
 namespace Demo.ApiServer
 {
@@ -53,6 +54,11 @@ namespace Demo.ApiServer
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
 
             services.AddAccountManager<AccountManager>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy => policy.AddRequirements(new AdminAuthorize()));
+            });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
