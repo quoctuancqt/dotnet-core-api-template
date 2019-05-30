@@ -6,6 +6,7 @@ using CoreApiTemplate.Common.Factories;
 using CoreApiTemplate.Persistence.Extensions;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using CoreApiTemplate.Domain.Identities;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreApiTemplate.Persistence
 {
@@ -18,6 +19,15 @@ namespace CoreApiTemplate.Persistence
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
 
             base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationUser>().ToTable("Users");
+            builder.Entity<ApplicationRole>().ToTable("Roles");
+            builder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken");
+            builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim");
+            builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
+            builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin");
+            builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole");
+
         }
 
         public override int SaveChanges()
