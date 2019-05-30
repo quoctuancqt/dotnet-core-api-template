@@ -1,12 +1,13 @@
 ﻿using Demo.Core.Interfaces;
 using Demo.Domain;
 using Demo.Persistence;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Demo.Core.Repository
 {
-    public class EfRepository<T> : IRepository<T>
+    public class EfRepository<T, TKey> : IRepository<T, TKey>
         where T : BaseEntity
     {
         protected readonly ApplicationContext _dbContext;
@@ -18,7 +19,7 @@ namespace Demo.Core.Repository
             _dbContext = dbContext;
         }
 
-        public T GetById(int id)
+        public T GetById(TKey id)
         {
             return _dbContext.Set<T>().Find(id);
         }
@@ -58,6 +59,14 @@ namespace Demo.Core.Repository
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_dbContext.Set<T>().AsQueryable(), spec);
+        }
+    }
+
+    public class EfRepository<T> : EfRepository<T, string>, IRepository<T>
+        where T : BaseEntity
+    {
+        public EfRepository(ApplicationContext dbContext) : base(dbContext)
+        {
         }
     }
 }

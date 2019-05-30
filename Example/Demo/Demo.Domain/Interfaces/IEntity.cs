@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Demo.Domain.Interfaces
+﻿namespace Demo.Domain.Interfaces
 {
     public interface IEntity<T>
     {
         T Id { get; set; }
     }
 
-    public interface IEntity : IEntity<Guid> { }
+    public interface IEntity : IEntity<string> { }
 }

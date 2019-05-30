@@ -1,17 +1,24 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using System;
 using System.Collections.Generic;
 
 namespace Demo.Core.Extensions
 {
     public static class SwashbuckleExtension
     {
-        public static IServiceCollection AddSwashbuckle(this IServiceCollection services)
+        public static IServiceCollection AddSwashbuckle(this IServiceCollection services, Action<SwaggerGenOptions> customOptions = null)
         {
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "API", Version = "v1" });
+
+                if (customOptions != null)
+                {
+                    customOptions.Invoke(c);
+                }
 
                 var security = new Dictionary<string, IEnumerable<string>>
                 {

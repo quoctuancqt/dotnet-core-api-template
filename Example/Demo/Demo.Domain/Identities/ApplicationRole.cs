@@ -3,7 +3,7 @@ using System;
 
 namespace Demo.Domain.Identities
 {
-    public class ApplicationRole : IdentityRole<Guid>
+    public class ApplicationRole : IdentityRole<string>
     {
     }
 }

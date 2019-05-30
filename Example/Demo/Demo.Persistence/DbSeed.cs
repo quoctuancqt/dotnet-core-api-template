@@ -1,5 +1,4 @@
 ﻿using Demo.Domain.Identities;
-using Demo.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +18,6 @@ namespace Demo.Persistence
                 var context = (ApplicationContext)scope.ServiceProvider.GetService(typeof(ApplicationContext));
 
                 context.Database.EnsureCreated();
-
-                context.Database.Migrate();
 
                 await SeedRoleAsync(context);
 

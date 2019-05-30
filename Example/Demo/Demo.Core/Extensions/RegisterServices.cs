@@ -4,8 +4,6 @@ using Demo.Core.Interfaces;
 using Demo.Core.Logging;
 using Demo.Core.Repository;
 using Demo.Core.Resilience;
-using Demo.Dto;
-using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -33,14 +31,6 @@ namespace Demo.Core.Extensions
             {
                 services.AddTransient<IHttpClient, StandardHttpClient>();
             }
-
-            return services.RegisterValidators();
-        }
-
-        public static IServiceCollection RegisterValidators(this IServiceCollection services)
-        {
-            services.AddSingleton<IValidator<LoginDto>, LoginDtoValidator>();
-            services.AddSingleton<IValidator<CreateProductDto>, CreateProductDtoValidator>();
 
             return services;
         }

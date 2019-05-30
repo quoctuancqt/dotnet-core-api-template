@@ -7,7 +7,8 @@ namespace Demo.Application
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-            services.AddScoped<IProductService, ProductService>();
+            // Register all custom services here
+            services.AddScoped<ICategoryService, CategoryService>();
 
             return services;
         }

@@ -1,10 +1,9 @@
-﻿using Demo.Application.Services;
+﻿using Demo.Application;
+using Demo.Application.Services;
 using Demo.Core.Extensions;
-using Demo.Core.Interfaces;
 using Demo.Core.Middlewares;
 using Demo.Domain.Identities;
 using Demo.Persistence;
-using Demo.Application;
 using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
 using JwtTokenServer.Proxies;
@@ -17,7 +16,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Demo.Application.Policies;
 
 namespace Demo.ApiServer
 {
@@ -55,17 +53,14 @@ namespace Demo.ApiServer
 
             services.AddAccountManager<AccountManager>();
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("AdminPolicy", policy => policy.AddRequirements(new AdminAuthorize()));
-            });
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Config DI
             services.AddServices(Configuration);
 
             services.AddCustomServices();
+
+            services.RegisterValidations();
 
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)
