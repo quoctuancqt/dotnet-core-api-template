@@ -1,5 +1,4 @@
 ﻿using CoreApiTemplate.Domain.Identities;
-using CoreApiTemplate.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
