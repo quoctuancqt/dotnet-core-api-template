@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace CoreApiTemplate.Persistence
 {
-    public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>, IUnitOfWork
+    public class ApplicationContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>, IUnitOfWork
     {
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 
@@ -22,11 +22,11 @@ namespace CoreApiTemplate.Persistence
 
             builder.Entity<ApplicationUser>().ToTable("Users");
             builder.Entity<ApplicationRole>().ToTable("Roles");
-            builder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken");
-            builder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim");
-            builder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
-            builder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin");
-            builder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole");
+            builder.Entity<IdentityUserToken<string>>().ToTable("UserToken");
+            builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaim");
+            builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaim");
+            builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogin");
+            builder.Entity<IdentityUserRole<string>>().ToTable("UserRole");
 
         }
 
