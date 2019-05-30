@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CoreApiTemplate.Dto;
+using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CoreApiTemplate.Application
 {
@@ -6,6 +8,8 @@ namespace CoreApiTemplate.Application
     {
         public static IServiceCollection RegisterValidations(this IServiceCollection services)
         {
+            services.AddSingleton<IValidator<LoginDto>, LoginDtoValidator>();
+
             return services;
         }
     }
