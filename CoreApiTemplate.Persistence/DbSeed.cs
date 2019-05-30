@@ -19,8 +19,6 @@ namespace CoreApiTemplate.Persistence
 
                 context.Database.EnsureCreated();
 
-                context.Database.Migrate();
-
                 await SeedRoleAsync(context);
 
                 await SeedUserAsync(scope, context);
