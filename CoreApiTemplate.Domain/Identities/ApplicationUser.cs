@@ -3,7 +3,7 @@ using System;
 
 namespace CoreApiTemplate.Domain.Identities
 {
-    public class ApplicationUser : IdentityUser<Guid>
+    public class ApplicationUser : IdentityUser<string>
     {
     }
 }

@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace CoreApiTemplate.Domain.Interfaces
+﻿namespace CoreApiTemplate.Domain.Interfaces
 {
     public interface IEntity<T>
     {
         T Id { get; set; }
     }
 
-    public interface IEntity : IEntity<Guid> { }
+    public interface IEntity : IEntity<string> { }
 }
