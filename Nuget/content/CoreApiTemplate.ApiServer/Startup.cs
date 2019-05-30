@@ -1,4 +1,5 @@
-﻿using CoreApiTemplate.Application.Services;
+﻿using CoreApiTemplate.Application;
+using CoreApiTemplate.Application.Services;
 using CoreApiTemplate.Core.Extensions;
 using CoreApiTemplate.Core.Middlewares;
 using CoreApiTemplate.Domain.Identities;
@@ -56,6 +57,8 @@ namespace CoreApiTemplate.ApiServer
 
             //Config DI
             services.AddServices(Configuration);
+
+            services.AddCustomServices();
 
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)

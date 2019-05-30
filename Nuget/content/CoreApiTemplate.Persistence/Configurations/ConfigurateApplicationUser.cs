@@ -9,7 +9,6 @@ namespace CoreApiTemplate.Persistence.Configurations
         public void Configure(EntityTypeBuilder<ApplicationUser> builder)
         {
             builder.Property(au => au.PasswordHash)
-               .HasMaxLength(8)
                .IsRequired();
 
             builder.Property(au => au.UserName)

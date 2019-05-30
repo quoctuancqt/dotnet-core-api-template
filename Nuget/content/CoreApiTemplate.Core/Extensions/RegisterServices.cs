@@ -2,12 +2,12 @@
 using CoreApiTemplate.Common.Factories;
 using CoreApiTemplate.Core.Interfaces;
 using CoreApiTemplate.Core.Logging;
+using CoreApiTemplate.Core.Repository;
 using CoreApiTemplate.Core.Resilience;
 using CoreApiTemplate.Dto;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Scrutor;
 using System.Reflection;
 
 namespace CoreApiTemplate.Core.Extensions
@@ -20,6 +20,8 @@ namespace CoreApiTemplate.Core.Extensions
 
             services.AddSingleton(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
 
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             if (configuration.GetValue<string>("UseResilientHttp") == bool.TrueString)
@@ -31,13 +33,6 @@ namespace CoreApiTemplate.Core.Extensions
             {
                 services.AddTransient<IHttpClient, StandardHttpClient>();
             }
-
-            services.Scan(scan =>
-                scan.FromCallingAssembly()
-                    .AddClasses()
-                    .UsingRegistrationStrategy(RegistrationStrategy.Skip)
-                    .AsMatchingInterface()
-                    .WithScopedLifetime());
 
             return services.RegisterValidators();
         }

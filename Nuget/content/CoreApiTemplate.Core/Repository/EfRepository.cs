@@ -6,15 +6,14 @@ using System.Linq;
 
 namespace CoreApiTemplate.Core.Repository
 {
-    public abstract class EfRepository<T, TContext> : IRepository<T>
+    public abstract class EfRepository<T> : IRepository<T>
         where T : BaseEntity
-        where TContext : ApplicationContext
     {
-        protected readonly TContext _dbContext;
+        protected readonly ApplicationContext _dbContext;
 
         public IUnitOfWork UnitOfWork => _dbContext;
 
-        public EfRepository(TContext dbContext)
+        public EfRepository(ApplicationContext dbContext)
         {
             _dbContext = dbContext;
         }
