@@ -40,7 +40,20 @@ namespace CoreApiTemplate.ApiServer
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase"), sqlOptions =>
+                {
+                    var retryCount = 5;
+
+                    if (!string.IsNullOrEmpty(Configuration.GetValue<string>("SqlRetryCount")))
+                    {
+                        retryCount = int.Parse(Configuration.GetValue<string>("SqlRetryCount"));
+                    }
+
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: retryCount,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null);
+                }));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                .AddEntityFrameworkStores<ApplicationContext>()
