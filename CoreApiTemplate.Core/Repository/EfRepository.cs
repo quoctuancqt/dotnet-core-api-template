@@ -4,6 +4,7 @@ using CoreApiTemplate.Persistence;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using System.Threading.Tasks;
 
 namespace CoreApiTemplate.Core.Repository
@@ -11,7 +12,7 @@ namespace CoreApiTemplate.Core.Repository
     public class EfRepository<T, TKey> : IRepository<T, TKey>
         where T : BaseEntity
     {
-        protected readonly ApplicationContext _dbContext;
+        private readonly ApplicationContext _dbContext;
 
         public IUnitOfWork UnitOfWork => _dbContext;
 
