@@ -8,6 +8,5 @@ namespace Demo.Persistence
     {
         int SaveChanges();
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-        Task SaveChangeAsync(Func<Task> action = null);
     }
 }

@@ -30,7 +30,7 @@ namespace Demo.Persistence.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(250);
+                        .HasMaxLength(20);
 
                     b.Property<DateTime?>("UpdatedAt");
 

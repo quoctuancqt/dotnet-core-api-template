@@ -1,22 +1,24 @@
 ﻿using Demo.Core.Interfaces;
 using Demo.Domain;
 using Demo.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Demo.Core.Repository
 {
     public class EfRepository<T, TKey> : IRepository<T, TKey>
         where T : BaseEntity
     {
-        protected readonly ApplicationContext _dbContext;
+        private readonly ApplicationContext _dbContext;
 
         public IUnitOfWork UnitOfWork => _dbContext;
 
         public EfRepository(ApplicationContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public T GetById(TKey id)
@@ -54,6 +56,21 @@ namespace Demo.Core.Repository
         public int Count(ISpecification<T> spec)
         {
             return ApplySpecification(spec).Count();
+        }
+
+        public async Task<T> GetByIdAsync(TKey id)
+        {
+            return await _dbContext.Set<T>().FindAsync(id);
+        }
+
+        public async Task<IReadOnlyList<T>> ListAllAsync()
+        {
+            return await _dbContext.Set<T>().ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
+        {
+            return await ApplySpecification(spec).ToListAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)

@@ -30,6 +30,13 @@ namespace Demo.Application.Services
 
             tokenRequest.Claims.Add(new Claim(ClaimTypes.Name, user.UserName));
 
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            foreach(var role in userRoles)
+            {
+                tokenRequest.Claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             tokenRequest.Responses.Add("userId", user.Id.ToString());
 
             return new AccountResult(tokenRequest);

@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System;
+using FluentValidation;
 
 namespace Demo.Dto
 {
@@ -11,10 +12,7 @@ namespace Demo.Dto
     {
         public CreateCategoryDtoValidator()
         {
-            RuleFor(x => x.Name)
-                .NotNull()
-                .NotEmpty()
-                .MaximumLength(250);
+            RuleFor(x => x.Name).NotNull().NotEmpty().MaximumLength(20);
         }
     }
 }

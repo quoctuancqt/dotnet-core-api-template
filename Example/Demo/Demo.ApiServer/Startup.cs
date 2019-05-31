@@ -1,4 +1,5 @@
 ﻿using Demo.Application;
+using Demo.Application.Policies;
 using Demo.Application.Services;
 using Demo.Core.Extensions;
 using Demo.Core.Middlewares;
@@ -40,7 +41,25 @@ namespace Demo.ApiServer
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase")));
+                {
+                    if (Configuration.GetSection("EfSettings").GetValue<string>("EnableRetry") == bool.TrueString)
+                    {
+                        options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase"), sqlOptions =>
+                        {
+                            var retryCount = int.Parse(Configuration.GetSection("EfSettings").GetValue<string>("SqlRetryCount"));
+
+                            sqlOptions.EnableRetryOnFailure(
+                                maxRetryCount: retryCount,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
+                        });
+                    }
+                    else
+                    {
+                        options.UseSqlServer(Configuration.GetConnectionString("DefaultDatabase"));
+                    }
+                });
+
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                .AddEntityFrameworkStores<ApplicationContext>()
@@ -52,6 +71,14 @@ namespace Demo.ApiServer
             services.AddHttpClient<OAuthClient>(typeof(OAuthClient).Name, client => client.BaseAddress = new Uri("http://localhost:5000"));
 
             services.AddAccountManager<AccountManager>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdminPolicy", policy =>
+                {
+                    policy.AddRequirements(new AdminAuthorize());
+                });
+            });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

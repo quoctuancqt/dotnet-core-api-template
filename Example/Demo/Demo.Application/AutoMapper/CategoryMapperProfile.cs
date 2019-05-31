@@ -8,9 +8,9 @@ namespace Demo.Application.AutoMapper
     {
         public CategoryMapperProfile()
         {
-            CreateMap<CreateCategoryDto, Category>();
-
             CreateMap<Category, CategoryDto>();
+
+            CreateMap<CreateCategoryDto, Category>();
         }
     }
 

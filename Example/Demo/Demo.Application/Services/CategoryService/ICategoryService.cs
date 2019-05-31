@@ -7,6 +7,6 @@ namespace Demo.Application.Services
     {
         Task<CategoryDto> CreateAsync(CreateCategoryDto dto);
 
-        CategoryDto GetById(string id);
+        Task<CategoryDto> GetByIdAsync(string id);
     }
 }

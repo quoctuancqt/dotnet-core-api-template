@@ -9,8 +9,8 @@ namespace Demo.Persistence.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name)
-                .HasMaxLength(250)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(20);
         }
     }
 }

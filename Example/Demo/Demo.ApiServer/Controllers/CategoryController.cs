@@ -1,14 +1,15 @@
 ﻿using Demo.Application.Services;
 using Demo.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Demo.ApiServer.Controllers
 {
+    [Authorize("AdminPolicy")]
     public class CategoryController : ApiBase
     {
         private readonly ICategoryService _categoryService;
-
         public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
@@ -17,15 +18,13 @@ namespace Demo.ApiServer.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCategoryDto dto)
         {
-            var result = await _categoryService.CreateAsync(dto);
-
-            return Ok(result);
+            return Ok(await _categoryService.CreateAsync(dto));
         }
 
-        [HttpGet("id")]
-        public IActionResult Get(string id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
         {
-            return Ok(_categoryService.GetById(id));
+            return Ok(await _categoryService.GetByIdAsync(id));
         }
     }
 }
