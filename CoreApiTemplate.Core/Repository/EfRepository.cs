@@ -17,7 +17,7 @@ namespace CoreApiTemplate.Core.Repository
 
         public EfRepository(ApplicationContext dbContext)
         {
-            _dbContext = dbContext;
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
         public T GetById(TKey id)
