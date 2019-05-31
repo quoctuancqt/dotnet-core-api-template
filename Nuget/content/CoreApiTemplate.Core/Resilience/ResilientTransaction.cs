@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CoreApiTemplate.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -6,11 +7,11 @@ namespace CoreApiTemplate.Core.Resilience
 {
     public class ResilientTransaction
     {
-        private DbContext _context;
-        private ResilientTransaction(DbContext context) =>
+        private ApplicationContext _context;
+        private ResilientTransaction(ApplicationContext context) =>
             _context = context ?? throw new ArgumentNullException(nameof(context));
 
-        public static ResilientTransaction New(DbContext context) =>
+        public static ResilientTransaction New(ApplicationContext context) =>
             new ResilientTransaction(context);
 
         public async Task ExecuteAsync(Func<Task> action)

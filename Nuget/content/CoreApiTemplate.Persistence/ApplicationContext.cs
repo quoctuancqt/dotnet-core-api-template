@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CoreApiTemplate.Common.Factories;
@@ -42,40 +41,6 @@ namespace CoreApiTemplate.Persistence
             this.BeforeCommit(ResolverFactory.GetCurrentUserId());
 
             return base.SaveChangesAsync(cancellationToken);
-        }
-
-        public async Task SaveChangeAsync(Func<Task> action = null)
-        {
-            var strategy = Database.CreateExecutionStrategy();
-
-            await strategy.ExecuteAsync(async () =>
-            {
-                using (var transaction = Database.BeginTransaction())
-                {
-                    try
-                    {
-                        await SaveChangesAsync();
-
-                        if (action != null)
-                        {
-                            await action.Invoke();
-                        }
-
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction?.Rollback();
-
-                        if (transaction != null)
-                        {
-                            transaction.Dispose();
-                        }
-
-                        throw;
-                    }
-                }
-            });
         }
     }
 }
