@@ -1,5 +1,5 @@
 # Clean Architecture
-https://github.com/JasonGT/NorthwindTraders/raw/master/Slides.pdf
+https://github.com/JasonGT/NorthwindTraders/blob/master/Slides.pdf
 
 # External Library
 ## JwtTokenServer
@@ -16,6 +16,9 @@ https://github.com/App-vNext/Polly
 
 ## Swagger
 https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-help-pages-using-swagger?view=aspnetcore-2.2
+
+## Scrutor
+https://github.com/khellang/Scrutor
 
 # Others
 ## Implement resilient Entity Framework Core SQL connections
