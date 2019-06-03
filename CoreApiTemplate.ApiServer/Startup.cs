@@ -3,6 +3,7 @@ using CoreApiTemplate.Application.Services;
 using CoreApiTemplate.Core.Extensions;
 using CoreApiTemplate.Core.Middlewares;
 using CoreApiTemplate.Domain.Identities;
+using CoreApiTemplate.Dto;
 using CoreApiTemplate.Persistence;
 using FluentValidation.AspNetCore;
 using JwtTokenServer.Extensions;
@@ -77,11 +78,13 @@ namespace CoreApiTemplate.ApiServer
 
             services.AddCustomServices();
 
-            services.RegisterValidations();
-
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Latest)
-                    .AddFluentValidation(fv => fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false);
+                    .AddFluentValidation(fv =>
+                    {
+                        fv.RunDefaultMvcValidationAfterFluentValidationExecutes = false;
+                        fv.RegisterValidatorsFromAssemblyContaining<LoginDtoValidator>();
+                    });
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ApplicationContext context)

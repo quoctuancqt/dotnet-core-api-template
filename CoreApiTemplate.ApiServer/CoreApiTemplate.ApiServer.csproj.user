@@ -4,7 +4,7 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>ApiServer</ActiveDebugProfile>
+    <ActiveDebugProfile>CoreApiTemplate.ApiServer</ActiveDebugProfile>
     <AutoRefresh>true</AutoRefresh>
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
