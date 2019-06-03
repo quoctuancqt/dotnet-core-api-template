@@ -6,7 +6,12 @@ namespace CoreApiTemplate.Application
     {
         public static IServiceCollection AddCustomServices(this IServiceCollection services)
         {
-            // Register all custom services here
+            services.Scan(scan =>
+            {
+                scan.FromCallingAssembly()
+                        .AddClasses()
+                        .AsMatchingInterface();
+            });
 
             return services;
         }
