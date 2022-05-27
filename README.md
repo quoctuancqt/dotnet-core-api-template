@@ -22,5 +22,7 @@ https://github.com/khellang/Scrutor
 
 # Others
 ## Implement resilient Entity Framework Core SQL connections
-- https://docs.microsoft.com/vi-vn/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-resilient-entity-framework-core-sql-connections?view=azureservicebus-4.1.1
-- https://cfrenzel.com/dotnet-new-templating-nuget
+https://docs.microsoft.com/vi-vn/dotnet/standard/microservices-architecture/implement-resilient-applications/implement-resilient-entity-framework-core-sql-connections?view=azureservicebus-4.1.1
+
+## How to create template for Nuget package
+https://cfrenzel.com/dotnet-new-templating-nuget
